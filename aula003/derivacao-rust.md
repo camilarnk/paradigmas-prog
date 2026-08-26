@@ -1,3 +1,56 @@
+# Gramática do loop `for` em Rust
+
+## 1. Fonte da Gramática
+Optaremos pela linguagem Rust, uma linguagem de programação multiparadigma, compilada e desenvolvida originalmente pela Mozilla.
+
+Rust é projetada com foco em segurança, concorrência e desempenho (https://pt.wikipedia.org/wiki/Rust_(linguagem_de_programação)).
+
+Para uma descrição oficial da linguagem, é recomendado utilizar a documentação oficial do Rust (https://doc.rust-lang.org/stable/).
+
+A gramática oficial do Rust utiliza uma notação gramatical própria, baseada em conceitos de EBNF, mas com extensões relacionadas ao processo de parsing e inspiradas em PEG (Parsing Expression Grammar).
+
+Por exemplo, a notação utiliza construções semelhantes às encontradas em EBNF:
+
+| — representa uma alternativa;
+? — indica zero ou uma ocorrência;
+* — indica zero ou mais ocorrências;
++ — indica uma ou mais ocorrências;
+( ... ) — indica agrupamento.
+Além dessas construções, a notação do Rust possui operadores específicos relacionados ao parsing. Um exemplo é:
+
+^ — chamado de hard cut, indica um ponto após o qual o parser não deve voltar atrás (backtrack) para tentar uma alternativa diferente.
+Assim, a notação da gramática de Rust não pode ser caracterizada simplesmente como BNF, EBNF ou PEG puro.
+
+## 2. Loop `for` em Rust
+
+Em Rust, o loop `for` funciona como um iterador de coleções ou intervalos, e sua gramática básica segue o formato:
+
+```bnf
+<for-statement> ::= "for" <identifier> "in" <iterable-expression> "{" <body> "}"
+
+<iterable-expression> ::= <identifier> | <expression>
+
+<body> ::= <statement> | <statement> <body>
+
+<statement> ::= <assignment> | <expression>
+
+<assignment> ::= <identifier> "=" <expression>
+
+<expression> ::= <identifier> | <literal> | <expression> <operator> <expression>
+
+<operator> ::= "+" | "-" | "*" | "/"
+```
+ | Regra | Significado |
+|---|---|
+| `<for-statement>` | Representa a estrutura completa do laço for |
+| `<identifier>` | Representa um nome de variável |
+| `<iterable-expression>` | Representa o objeto ou expressão que será percorrida pelo laço |
+| `<body>` | Representa o conjunto de instruções executadas a cada iteração |
+| `<statement>` | Representa uma instrução individual, como atribuição ou expressão |
+| `<assignment>` | Representa uma atribuição de valor a uma variável |
+| `<expression>` | Representa uma expressão no geral |
+| `<operator>` | Representa operadores aritméticos |
+
 ## 3. Defina o código a ser gerado
 
 Escolha um pequeno trecho de código válido na linguagem.  O código deve ser suficientemente simples para que seja possível demonstrar sua derivação. Recomenda-se utilizar uma construção como uma atribuição, uma expressão aritmética, uma estrutura condicional ou uma chamada de função.  
